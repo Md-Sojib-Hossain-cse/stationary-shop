@@ -43,8 +43,8 @@ const stationaryProductSchema = new Schema<IProduct>({
   },
   price: {
     type: Number,
-    required: [true, 'Price must be a positive number'],
-    min: [1, 'Price cannot be less then 1'],
+    required: [true, 'Price field is required'],
+    min: [0, 'Price must be a positive number'],
     max: [1000000, 'Price cannot be more then 1000000'],
   },
   category: {

@@ -1,24 +1,34 @@
 import { Request, Response } from 'express';
 import { stationaryProductService } from './stationary-product.service';
-import { IProduct } from './stationary-product.interface';
+import { IProduct, TQueryParams } from './stationary-product.interface';
+import config from '../../config';
 
 //stationary products get request/response controller
 const getStationaryProducts = async (req: Request, res: Response) => {
   try {
+    //queries
+    const productName = req?.query?.name;
+    const productBrand = req?.query?.brand;
+    const productCategory = req?.query?.category;
     //call service to retrieve data
-    const result = await stationaryProductService.getStationaryProductsFromDB();
+    const result = await stationaryProductService.getStationaryProductsFromDB(
+      productName as TQueryParams,
+      productBrand as TQueryParams,
+      productCategory as TQueryParams,
+    );
     //success response
     res.status(200).json({
       message: 'Products retrieved successfully',
       status: true,
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     //error response
     res.status(500).json({
-      message: 'Something went wrong!',
+      message: error.message,
       success: false,
-      data: [],
+      error: error,
+      stack: config.node_env === 'development' ? error.stack : undefined,
     });
   }
 };
@@ -35,11 +45,13 @@ const createStationaryProduct = async (req: Request, res: Response) => {
       success: true,
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
+    console.log(error);
     res.status(500).json({
-      message: 'Something went wrong!',
+      message: error.message,
       success: false,
-      data: {},
+      error: error,
+      stack: config.node_env === 'development' ? error.stack : undefined,
     });
   }
 };

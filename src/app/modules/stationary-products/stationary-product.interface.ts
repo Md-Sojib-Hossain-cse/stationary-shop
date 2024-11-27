@@ -15,3 +15,13 @@ export interface IProduct {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+//query params type
+export type TQueryParams = string | undefined;
+
+//query object type
+export type TQueryObj = {
+  name?: string;
+  brand?: string;
+  category?: string;
+};
