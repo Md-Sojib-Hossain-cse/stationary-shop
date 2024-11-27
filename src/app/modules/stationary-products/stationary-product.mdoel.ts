@@ -5,10 +5,11 @@ import { IProduct } from './stationary-product.interface';
 const stationaryProductSchema = new Schema<IProduct>({
   name: {
     type: String,
-    required: [true, 'Name must be a string'],
-    trim: true,
-    maxlength: [20, 'Name cannot be more then 20 characters'],
+    required: [true, 'Name must be a string'], //custom error messages based on error
+    trim: true, //removing extra white spaces from right and left of the text
+    maxlength: [20, 'Name cannot be more then 20 characters'], //custom error messages based on error
     validate: {
+      //value refers current value of name field.
       validator: function (value: string) {
         const nameCapitalizeStr =
           value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
@@ -18,8 +19,10 @@ const stationaryProductSchema = new Schema<IProduct>({
           return true;
         }
       },
-      message: '{VALUE} is not in capitalize format',
+      //{VALUE} refers current value of name field.
+      message: '{VALUE} is not in capitalize format', //custom error messages based on error
     },
+    unique: true,
   },
   brand: {
     type: String,
@@ -71,14 +74,28 @@ const stationaryProductSchema = new Schema<IProduct>({
     type: Number,
     required: [true, 'Your product should be a quantity'],
     min: [0, 'Product quantity should be a positive number'],
-    default: 0,
+    default: 0, //using a default value for this field
   },
   inStock: {
     type: Boolean,
     required: [true, 'Product stock status should be true or false'],
   },
+  createdAt: {
+    type: Date,
+    immutable: true,
+  },
+  updatedAt: {
+    type: Date,
+  },
 });
 
+stationaryProductSchema.pre('save', async function (this, next) {
+  this.createdAt = new Date();
+  this.updatedAt = new Date();
+  next();
+});
+
+//creating model using schema and interface
 export const StationaryProductModel = model<IProduct>(
   'stationary-product',
   stationaryProductSchema,
