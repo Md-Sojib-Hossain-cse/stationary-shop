@@ -83,8 +83,38 @@ const createStationaryProduct = async (req: Request, res: Response) => {
   }
 };
 
+//single stationary product update request/response controller
+const updateAStationaryProduct = async (req: Request, res: Response) => {
+  try {
+    //params
+    const productId = req?.params?.productId;
+    //data
+    const updateData = req?.body;
+    //call service to retrieve data
+    const result = await stationaryProductService.updateAStationaryProductOnDB(
+      productId,
+      updateData,
+    );
+    //success response
+    res.status(200).json({
+      message: 'Product updated successfully',
+      status: true,
+      data: result,
+    });
+  } catch (error: any) {
+    //error response
+    res.status(500).json({
+      message: error.message,
+      success: false,
+      error: error,
+      stack: config.node_env === 'development' ? error.stack : undefined,
+    });
+  }
+};
+
 export const stationaryProductController = {
   getStationaryProducts,
   createStationaryProduct,
   getSingleStationaryProduct,
+  updateAStationaryProduct,
 };

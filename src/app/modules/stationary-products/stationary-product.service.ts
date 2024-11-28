@@ -40,9 +40,24 @@ const createStationaryProductOnDB = async (data: IProduct) => {
   return result;
 };
 
+//update a stationary product on database
+const updateAStationaryProductOnDB = async (
+  id: string | undefined,
+  data: IProduct,
+) => {
+  //update current date
+  data.updatedAt = new Date();
+
+  const result = await StationaryProductModel.findByIdAndUpdate(id, data, {
+    new: true,
+  });
+  return result;
+};
+
 //exporting all services
 export const stationaryProductService = {
   getStationaryProductsFromDB,
   createStationaryProductOnDB,
   getSingleStationaryProductFromBD,
+  updateAStationaryProductOnDB,
 };

@@ -21,3 +21,9 @@ stationaryProductRoute.post(
   '/',
   stationaryProductController.createStationaryProduct,
 );
+
+//single stationary product update route
+stationaryProductRoute.put(
+  '/:productId',
+  stationaryProductController.updateAStationaryProduct,
+);
