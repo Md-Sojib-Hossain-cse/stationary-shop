@@ -27,3 +27,9 @@ stationaryProductRoute.put(
   '/:productId',
   stationaryProductController.updateAStationaryProduct,
 );
+
+//single stationary product delete route
+stationaryProductRoute.delete(
+  '/:productId',
+  stationaryProductController.deleteSingleStationaryProduct,
+);

@@ -97,9 +97,42 @@ const updateAStationaryProduct = async (req: Request, res: Response) => {
     );
     //success response
     res.status(200).json({
-      message: 'Product updated successfully',
-      status: true,
+      message:
+        result === null
+          ? 'There is no product exist with this information to update'
+          : 'Product updated successfully',
+      status: result === null ? false : true,
       data: result,
+    });
+  } catch (error: any) {
+    //error response
+    res.status(500).json({
+      message: error.message,
+      success: false,
+      error: error,
+      stack: config.node_env === 'development' ? error.stack : undefined,
+    });
+  }
+};
+
+//single stationary product delete request/response controller
+const deleteSingleStationaryProduct = async (req: Request, res: Response) => {
+  try {
+    //params
+    const productId = req?.params?.productId;
+    //call service to retrieve data
+    const result =
+      await stationaryProductService.deleteSingleStationaryProductFromBD(
+        productId,
+      );
+    //success response
+    res.status(200).json({
+      message:
+        result === null
+          ? 'There is no such product to delete'
+          : 'Product deleted successfully',
+      status: result === null ? false : true,
+      data: {},
     });
   } catch (error: any) {
     //error response
@@ -117,4 +150,5 @@ export const stationaryProductController = {
   createStationaryProduct,
   getSingleStationaryProduct,
   updateAStationaryProduct,
+  deleteSingleStationaryProduct,
 };

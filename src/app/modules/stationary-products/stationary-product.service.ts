@@ -29,7 +29,7 @@ const getStationaryProductsFromDB = async (
 };
 
 //get single stationary product from database based on id
-const getSingleStationaryProductFromBD = async (id: string | undefined) => {
+const getSingleStationaryProductFromBD = async (id: string) => {
   const result = await StationaryProductModel.findById(id);
   return result;
 };
@@ -41,10 +41,7 @@ const createStationaryProductOnDB = async (data: IProduct) => {
 };
 
 //update a stationary product on database
-const updateAStationaryProductOnDB = async (
-  id: string | undefined,
-  data: IProduct,
-) => {
+const updateAStationaryProductOnDB = async (id: string, data: IProduct) => {
   //update current date
   data.updatedAt = new Date();
 
@@ -54,10 +51,17 @@ const updateAStationaryProductOnDB = async (
   return result;
 };
 
+//get single stationary product from database based on id
+const deleteSingleStationaryProductFromBD = async (id: string) => {
+  const result = await StationaryProductModel.findByIdAndDelete(id);
+  return result;
+};
+
 //exporting all services
 export const stationaryProductService = {
   getStationaryProductsFromDB,
   createStationaryProductOnDB,
   getSingleStationaryProductFromBD,
   updateAStationaryProductOnDB,
+  deleteSingleStationaryProductFromBD,
 };
