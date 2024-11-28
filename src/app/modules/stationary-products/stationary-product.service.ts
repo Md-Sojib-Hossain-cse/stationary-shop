@@ -5,7 +5,7 @@ import {
 } from './stationary-product.interface';
 import { StationaryProductModel } from './stationary-product.mdoel';
 
-//try to retrieve data from database
+//retrieve stationary product data from database
 const getStationaryProductsFromDB = async (
   productName: TQueryParams,
   productBrand: TQueryParams,
@@ -28,7 +28,13 @@ const getStationaryProductsFromDB = async (
   return result;
 };
 
-//try to post single data on database
+//get single stationary product from database based on id
+const getSingleStationaryProductFromBD = async (id: string | undefined) => {
+  const result = await StationaryProductModel.findById(id);
+  return result;
+};
+
+//post single data on database
 const createStationaryProductOnDB = async (data: IProduct) => {
   const result = await StationaryProductModel.create(data);
   return result;
@@ -38,4 +44,5 @@ const createStationaryProductOnDB = async (data: IProduct) => {
 export const stationaryProductService = {
   getStationaryProductsFromDB,
   createStationaryProductOnDB,
+  getSingleStationaryProductFromBD,
 };

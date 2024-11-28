@@ -33,6 +33,33 @@ const getStationaryProducts = async (req: Request, res: Response) => {
   }
 };
 
+//single stationary product get request/response controller
+const getSingleStationaryProduct = async (req: Request, res: Response) => {
+  try {
+    //params
+    const productId = req?.params?.productId;
+    //call service to retrieve data
+    const result =
+      await stationaryProductService.getSingleStationaryProductFromBD(
+        productId,
+      );
+    //success response
+    res.status(200).json({
+      message: 'Product retrieved successfully',
+      status: true,
+      data: result,
+    });
+  } catch (error: any) {
+    //error response
+    res.status(500).json({
+      message: error.message,
+      success: false,
+      error: error,
+      stack: config.node_env === 'development' ? error.stack : undefined,
+    });
+  }
+};
+
 //stationary product post request/response controller
 const createStationaryProduct = async (req: Request, res: Response) => {
   try {
@@ -59,4 +86,5 @@ const createStationaryProduct = async (req: Request, res: Response) => {
 export const stationaryProductController = {
   getStationaryProducts,
   createStationaryProduct,
+  getSingleStationaryProduct,
 };
