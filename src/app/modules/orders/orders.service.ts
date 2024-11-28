@@ -3,6 +3,7 @@ import { StationaryProductModel } from '../stationary-products/stationary-produc
 import { IOrders } from './orders.interface';
 import { OrderModel } from './orders.model';
 
+//create a order into database
 const createOrderInDB = async (orderData: IOrders) => {
   //parsed id into mongodb object id
   let productId = new mongoose.mongo.ObjectId(orderData.product);
@@ -59,6 +60,25 @@ const createOrderInDB = async (orderData: IOrders) => {
   return result;
 };
 
+//calculate total revenue from orders
+const getTotalRevenueFromDB = async () => {
+  const result = await OrderModel.aggregate([
+    //stage 1
+    { $project: { _id: 1, totalPrice: 1 } },
+    //stage 2
+    {
+      $group: {
+        _id: null,
+        totalRevenue: { $sum: '$totalPrice' },
+      },
+    },
+    //stage 3
+    { $project: { _id: 0, totalRevenue: 1 } },
+  ]);
+  return result[0];
+};
+
 export const ordersService = {
   createOrderInDB,
+  getTotalRevenueFromDB,
 };
