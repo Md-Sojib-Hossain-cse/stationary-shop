@@ -29,6 +29,19 @@ const OrdersSchema = new Schema<IOrders>({
     required: [true, 'Total price is required'],
     min: [0, 'Price should be a positive number'],
   },
+  createdAt: {
+    type: Date,
+    immutable: true,
+  },
+  updatedAt: {
+    type: Date,
+  },
+});
+
+OrdersSchema.pre('save', async function (this, next) {
+  this.createdAt = new Date();
+  this.updatedAt = new Date();
+  next();
 });
 
 export const OrderModel = model('orders', OrdersSchema);
