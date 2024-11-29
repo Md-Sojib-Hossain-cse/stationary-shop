@@ -1,10 +1,9 @@
-import { Request, Response } from 'express';
-import config from '../../config';
+import { NextFunction, Request, Response } from 'express';
 import { ordersService } from './orders.service';
 import { IOrders } from './orders.interface';
 
 //create order request/response controller
-const createOrder = async (req: Request, res: Response) => {
+const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     //receive order data
     const orderData: IOrders = req?.body;
@@ -26,17 +25,16 @@ const createOrder = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    res.status(500).json({
-      message: error.message,
-      success: false,
-      error: error,
-      stack: config.node_env === 'development' ? error.stack : undefined,
-    });
+    next(error);
   }
 };
 
 //get revenue request/response controller
-const getTotalRevenue = async (req: Request, res: Response) => {
+const getTotalRevenue = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     //try to get total revenue
     const result = await ordersService.getTotalRevenueFromDB();
@@ -47,12 +45,7 @@ const getTotalRevenue = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    res.status(500).json({
-      message: error.message,
-      success: false,
-      error: error,
-      stack: config.node_env === 'development' ? error.stack : undefined,
-    });
+    next(error);
   }
 };
 

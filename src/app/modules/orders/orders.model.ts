@@ -1,5 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { IOrders } from './orders.interface';
+import { StationaryProductModel } from '../stationary-products/stationary-product.mdoel';
 
 const OrdersSchema = new Schema<IOrders>({
   email: {
@@ -15,8 +16,8 @@ const OrdersSchema = new Schema<IOrders>({
     },
   },
   product: {
-    type: String,
-    trim: true,
+    type: Schema.Types.ObjectId,
+    ref: StationaryProductModel.collection.name,
     required: [true, "Order can't be placed without a valid product"],
   },
   quantity: {

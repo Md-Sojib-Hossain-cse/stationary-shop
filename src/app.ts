@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import { stationaryProductRoute } from './app/modules/stationary-products/stationary-product.route';
 import orderRoute from './app/modules/orders/order.route';
+import { GenericError } from './app/Generics/generic.error';
 
 const app = express();
 
@@ -17,5 +18,8 @@ app.use('/api/orders', orderRoute);
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome to Stationary Shop..!📖');
 });
+
+//generic error middleware
+app.use(GenericError);
 
 export default app;

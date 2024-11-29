@@ -1,10 +1,14 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { stationaryProductService } from './stationary-product.service';
 import { IProduct, TQueryParams } from './stationary-product.interface';
 import config from '../../config';
 
 //stationary products get request/response controller
-const getStationaryProducts = async (req: Request, res: Response) => {
+const getStationaryProducts = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     //queries
     const productName = req?.query?.name;
@@ -23,18 +27,17 @@ const getStationaryProducts = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    //error response
-    res.status(500).json({
-      message: error.message,
-      success: false,
-      error: error,
-      stack: config.node_env === 'development' ? error.stack : undefined,
-    });
+    //error response using generic error middleware
+    next(error);
   }
 };
 
 //single stationary product get request/response controller
-const getSingleStationaryProduct = async (req: Request, res: Response) => {
+const getSingleStationaryProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     //params
     const productId = req?.params?.productId;
@@ -51,17 +54,16 @@ const getSingleStationaryProduct = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     //error response
-    res.status(500).json({
-      message: error.message,
-      success: false,
-      error: error,
-      stack: config.node_env === 'development' ? error.stack : undefined,
-    });
+    next(error);
   }
 };
 
 //stationary product post request/response controller
-const createStationaryProduct = async (req: Request, res: Response) => {
+const createStationaryProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const data: IProduct = req.body;
     const result =
@@ -73,18 +75,16 @@ const createStationaryProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    console.log(error);
-    res.status(500).json({
-      message: error.message,
-      success: false,
-      error: error,
-      stack: config.node_env === 'development' ? error.stack : undefined,
-    });
+    next(error);
   }
 };
 
 //single stationary product update request/response controller
-const updateAStationaryProduct = async (req: Request, res: Response) => {
+const updateAStationaryProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     //params
     const productId = req?.params?.productId;
@@ -106,17 +106,16 @@ const updateAStationaryProduct = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     //error response
-    res.status(500).json({
-      message: error.message,
-      success: false,
-      error: error,
-      stack: config.node_env === 'development' ? error.stack : undefined,
-    });
+    next(error);
   }
 };
 
 //single stationary product delete request/response controller
-const deleteSingleStationaryProduct = async (req: Request, res: Response) => {
+const deleteSingleStationaryProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     //params
     const productId = req?.params?.productId;
@@ -136,12 +135,7 @@ const deleteSingleStationaryProduct = async (req: Request, res: Response) => {
     });
   } catch (error: any) {
     //error response
-    res.status(500).json({
-      message: error.message,
-      success: false,
-      error: error,
-      stack: config.node_env === 'development' ? error.stack : undefined,
-    });
+    next(error);
   }
 };
 
