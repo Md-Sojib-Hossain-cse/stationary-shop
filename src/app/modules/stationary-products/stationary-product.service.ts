@@ -12,7 +12,7 @@ const getStationaryProductsFromDB = async (
   productCategory: TQueryParams,
 ) => {
   //take a query object
-  let queryObj: TQueryObj = {};
+  const queryObj: TQueryObj = {};
   //if queries exists then include them into query object
   if (productName) {
     queryObj.name = productName;

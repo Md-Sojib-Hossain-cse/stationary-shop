@@ -1,4 +1,4 @@
-import mongoose, { model, Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { IOrders } from './orders.interface';
 import { StationaryProductModel } from '../stationary-products/stationary-product.mdoel';
 
@@ -16,7 +16,7 @@ const OrdersSchema = new Schema<IOrders>({
     },
   },
   product: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: StationaryProductModel.collection.name,
     required: [true, "Order can't be placed without a valid product"],
   },

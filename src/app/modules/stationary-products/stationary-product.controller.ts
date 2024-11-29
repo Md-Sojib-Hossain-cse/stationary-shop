@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { stationaryProductService } from './stationary-product.service';
 import { IProduct, TQueryParams } from './stationary-product.interface';
-import config from '../../config';
 
 //stationary products get request/response controller
 const getStationaryProducts = async (

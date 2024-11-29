@@ -1,5 +1,3 @@
-import mongoose from 'mongoose';
-
 //orders interface
 export interface IOrders {
   email: string;
