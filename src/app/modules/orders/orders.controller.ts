@@ -10,13 +10,23 @@ const createOrder = async (req: Request, res: Response, next: NextFunction) => {
 
     const result = await ordersService.createOrderInDB(orderData);
 
+    if (result === null) {
+      res.status(404).json({
+        message: 'Product not Found!',
+        status: false,
+        data: result,
+      });
+      return;
+    }
+
     //in sufficient stock
-    if (!Object.keys(result).length) {
-      res.status(200).json({
+    if (!Object.keys(result as object).length) {
+      res.status(500).json({
         message: 'Order denied because of , insufficient quantity of product',
         status: false,
         data: result,
       });
+      return;
     }
     //success response
     res.status(200).json({

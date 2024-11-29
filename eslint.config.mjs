@@ -1,7 +1,7 @@
-import globals from 'globals'
-import pluginJs from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -17,7 +17,7 @@ export default [
       'no-undef': 'error',
     },
   },
-  { ignores: ['.node_modules/*', '.env'] },
+  { ignores: ['.node_modules/*', '.env', 'readme.md'] },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-]
+];

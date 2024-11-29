@@ -5,8 +5,21 @@ import { OrderModel } from './orders.model';
 
 //create a order into database
 const createOrderInDB = async (orderData: IOrders) => {
+  //check if product id length is a valid ObjectId length or not
+  if (orderData.product.length !== 24) {
+    return null;
+  }
+
   //parsed id into mongodb object id
-  let productId = new mongoose.mongo.ObjectId(orderData.product);
+  const productId = new mongoose.Types.ObjectId(orderData.product);
+
+  //check if ordered product exists or not
+  const isProductExist = await StationaryProductModel.findById(
+    orderData.product,
+  );
+  if (!isProductExist) {
+    return null;
+  }
 
   //Check if order can make
   const orderedProduct = await StationaryProductModel.aggregate([
@@ -17,6 +30,7 @@ const createOrderInDB = async (orderData: IOrders) => {
       },
     },
   ]);
+
   // if ordered product didn't exists or quantity isn't enough
   if (!orderedProduct.length) {
     return {};

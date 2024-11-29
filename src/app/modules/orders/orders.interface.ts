@@ -1,9 +1,9 @@
-import { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 //orders interface
 export interface IOrders {
   email: string;
-  product: Schema.Types.ObjectId;
+  product: string;
   quantity: number;
   totalPrice: number;
   createdAt?: Date;
