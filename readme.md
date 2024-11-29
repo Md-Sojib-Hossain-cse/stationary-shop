@@ -31,7 +31,7 @@ https://stationary-shop-delta.vercel.app/api/products
 ```javascript
 Method : GET
 API : "https://stationary-shop-delta.vercel.app/api/products"
-EndPoint "/api/products"
+EndPoint : "/api/products"
 ```
 
 Apply query parameters searchTerm can be name, brand, category
@@ -71,7 +71,7 @@ https://stationary-shop-delta.vercel.app/api/products/:productId
 ```javascript
 Method : GET
 API : "https://stationary-shop-delta.vercel.app/api/products/:productId"
-EndPoint "/api/products/:productId"
+EndPoint : "/api/products/:productId"
 ```
 
 - Demo Response
@@ -102,7 +102,7 @@ https://stationary-shop-delta.vercel.app/api/products
 ```javascript
 Method : POST
 API : "https://stationary-shop-delta.vercel.app/api/products/"
-EndPoint "/api/products/"
+EndPoint : "/api/products/"
 ```
 
 - Demo Data
@@ -147,7 +147,7 @@ https://stationary-shop-delta.vercel.app/api/products/:productId
 ```javascript
 Method : PUT
 API : "https://stationary-shop-delta.vercel.app/api/products/:productId"
-EndPoint "/api/products/:productId"
+EndPoint : "/api/products/:productId"
 ```
 
 - Demo Data
@@ -187,7 +187,7 @@ https://stationary-shop-delta.vercel.app/api/products/:productId
 ```javascript
 Method : DELETE
 API : "https://stationary-shop-delta.vercel.app/api/products/:productId"
-EndPoint "/api/products/:productId"
+EndPoint : "/api/products/:productId"
 ```
 
 - Demo Response
@@ -207,7 +207,7 @@ https://stationary-shop-delta.vercel.app/api/orders
 ```javascript
 Method : POST
 API : "https://stationary-shop-delta.vercel.app/api/orders"
-EndPoint "/api/orders"
+EndPoint : "/api/orders"
 ```
 
 - Demo Data
@@ -246,7 +246,7 @@ https://stationary-shop-delta.vercel.app/api/orders/revenue
 ```javascript
 Method : GET
 API : "https://stationary-shop-delta.vercel.app/api/orders/revenue"
-EndPoint "/api/orders/revenue"
+EndPoint : "/api/orders/revenue"
 ```
 
 - Demo Response
