@@ -18,6 +18,7 @@ https://stationary-shop-delta.vercel.app/
 - Add Environment Variables and you are good to go
 
 ```
+NODE_ENV=development
 PORT=3000
 DATABASE_URL=mongodb+srv://<dbUser>:<dbPassword>@cluster0.jnc3ejx.mongodb.net/stationary-shop?retryWrites=true&w=majority&appName=Cluster0
 ```
