@@ -30,80 +30,9 @@ DATABASE_URL=mongodb+srv://<dbUser>:<dbPassword>@cluster0.jnc3ejx.mongodb.net/st
 https://stationary-shop-delta.vercel.app
 
 ```javascript
-Method : GET
-API : "https://stationary-shop-delta.vercel.app"
-EndPoint : "/"
-```
-
-### All Product GET Route
-
-https://stationary-shop-delta.vercel.app/api/products
-
-```javascript
-Method : GET
-API : "https://stationary-shop-delta.vercel.app/api/products"
-EndPoint : "/api/products"
-```
-
-Apply query parameters searchTerm can be name, brand, category
-
-```javascript
- /api/products?searchTerm=category
-```
-
-- Demo Response
-
-```javascript
- {
-  "message": "Products retrieved successfully",
-  "status": true,
-  "data": [
-    {
-      "_id": "648a45e5f0123c45678d9012",
-      "name": "Notebook",
-      "brand": "Moleskine",
-      "price": 15,
-      "category": "Office Supplies",
-      "description": "A high-quality notebook for professionals.",
-      "quantity": 200,
-      "inStock": true,
-      "createdAt": "2024-11-19T10:23:45.123Z",
-      "updatedAt": "2024-11-19T10:23:45.123Z"
-    },
-    // ... rest data
-  ]
-}
-```
-
-### Single Product GET Route
-
-https://stationary-shop-delta.vercel.app/api/products/:productId
-
-```javascript
-Method : GET
-API : "https://stationary-shop-delta.vercel.app/api/products/:productId"
-EndPoint : "/api/products/:productId"
-```
-
-- Demo Response
-
-```javascript
-{
-  "message": "Product retrieved successfully",
-  "status": true,
-  "data": {
-    "_id": "648a45e5f0123c45678d9012",
-    "name": "Notebook",
-    "brand": "Moleskine",
-    "price": 15,
-    "category": "Office Supplies",
-    "description": "A high-quality notebook for professionals.",
-    "quantity": 200,
-    "inStock": true,
-    "createdAt": "2024-11-19T10:23:45.123Z",
-    "updatedAt": "2024-11-19T10:23:45.123Z"
-  }
-}
+Method: GET;
+API: 'https://stationary-shop-delta.vercel.app';
+EndPoint: '/';
 ```
 
 ### Product POST route
@@ -111,9 +40,9 @@ EndPoint : "/api/products/:productId"
 https://stationary-shop-delta.vercel.app/api/products
 
 ```javascript
-Method : POST
-API : "https://stationary-shop-delta.vercel.app/api/products/"
-EndPoint : "/api/products/"
+Method: POST;
+API: 'https://stationary-shop-delta.vercel.app/api/products/';
+EndPoint: '/api/products/';
 ```
 
 - Demo Data
@@ -151,14 +80,85 @@ EndPoint : "/api/products/"
 }
 ```
 
+### All Product GET Route
+
+https://stationary-shop-delta.vercel.app/api/products
+
+```javascript
+Method: GET;
+API: 'https://stationary-shop-delta.vercel.app/api/products';
+EndPoint: '/api/products';
+```
+
+Apply query parameters searchTerm can be name, brand, category
+
+```javascript
+ /api/products?searchTerm=category
+```
+
+- Demo Response
+
+```javascript
+ {
+  "message": "Products retrieved successfully",
+  "status": true,
+  "data": [
+    {
+      "_id": "648a45e5f0123c45678d9012",
+      "name": "Notebook",
+      "brand": "Moleskine",
+      "price": 15,
+      "category": "Office Supplies",
+      "description": "A high-quality notebook for professionals.",
+      "quantity": 200,
+      "inStock": true,
+      "createdAt": "2024-11-19T10:23:45.123Z",
+      "updatedAt": "2024-11-19T10:23:45.123Z"
+    },
+    // ... rest data
+  ]
+}
+```
+
+### Single Product GET Route
+
+https://stationary-shop-delta.vercel.app/api/products/:productId
+
+```javascript
+Method: GET;
+API: 'https://stationary-shop-delta.vercel.app/api/products/:productId';
+EndPoint: '/api/products/:productId';
+```
+
+- Demo Response
+
+```javascript
+{
+  "message": "Product retrieved successfully",
+  "status": true,
+  "data": {
+    "_id": "648a45e5f0123c45678d9012",
+    "name": "Notebook",
+    "brand": "Moleskine",
+    "price": 15,
+    "category": "Office Supplies",
+    "description": "A high-quality notebook for professionals.",
+    "quantity": 200,
+    "inStock": true,
+    "createdAt": "2024-11-19T10:23:45.123Z",
+    "updatedAt": "2024-11-19T10:23:45.123Z"
+  }
+}
+```
+
 ### Single Stationary Product Update (PUT) route
 
 https://stationary-shop-delta.vercel.app/api/products/:productId
 
 ```javascript
-Method : PUT
-API : "https://stationary-shop-delta.vercel.app/api/products/:productId"
-EndPoint : "/api/products/:productId"
+Method: PUT;
+API: 'https://stationary-shop-delta.vercel.app/api/products/:productId';
+EndPoint: '/api/products/:productId';
 ```
 
 - Demo Data
@@ -196,9 +196,9 @@ EndPoint : "/api/products/:productId"
 https://stationary-shop-delta.vercel.app/api/products/:productId
 
 ```javascript
-Method : DELETE
-API : "https://stationary-shop-delta.vercel.app/api/products/:productId"
-EndPoint : "/api/products/:productId"
+Method: DELETE;
+API: 'https://stationary-shop-delta.vercel.app/api/products/:productId';
+EndPoint: '/api/products/:productId';
 ```
 
 - Demo Response
@@ -216,9 +216,9 @@ EndPoint : "/api/products/:productId"
 https://stationary-shop-delta.vercel.app/api/orders
 
 ```javascript
-Method : POST
-API : "https://stationary-shop-delta.vercel.app/api/orders"
-EndPoint : "/api/orders"
+Method: POST;
+API: 'https://stationary-shop-delta.vercel.app/api/orders';
+EndPoint: '/api/orders';
 ```
 
 - Demo Data
@@ -255,9 +255,9 @@ EndPoint : "/api/orders"
 https://stationary-shop-delta.vercel.app/api/orders/revenue
 
 ```javascript
-Method : GET
-API : "https://stationary-shop-delta.vercel.app/api/orders/revenue"
-EndPoint : "/api/orders/revenue"
+Method: GET;
+API: 'https://stationary-shop-delta.vercel.app/api/orders/revenue';
+EndPoint: '/api/orders/revenue';
 ```
 
 - Demo Response
